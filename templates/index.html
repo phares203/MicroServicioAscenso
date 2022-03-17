@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<form action="/add_contact" method="POST">
+
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="amount" placeholder="amount">
+    <input type="text" name="requestedAmount" placeholder="requestedAmount">
+    <button type="submit">
+        Save
+    </button>
+
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Amount</td>
+            <td>requestedAmount</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for campaign in campaigns %}
+            <tr>
+                <td>{{ campaign.1 }}</td>
+                <td>{{ campaign.2 }}</td>
+                <td>{{ campaign.3 }}</td>
+                <td>
+                    <a href="/edit/{{campaign.0}}">Edit</a>
+                    <a href="/delete/{{campaign.0}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

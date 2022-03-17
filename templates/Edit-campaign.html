@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<form action="/update/{{ campaign.0 }}" method="POST">
+
+    <input type="text" name="name" placeholder="name" value="{{ campaign.1 }}">
+    <input type="text" name="amount" placeholder="amount" value="{{ campaign.2}}">
+    <input type="text" name="requestedAmount" placeholder="requestedAmount" value="{{ campaign.3}}">
+    <button type="submit">
+        Save
+    </button>
+
+</form>
+
+{% endblock %}
